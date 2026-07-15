@@ -1,0 +1,79 @@
+(ns specialized.facts-test
+  (:require [clojure.test :refer [deftest is]]
+            [specialized.facts :as facts]))
+
+(deftest jpn-has-a-spec-basis
+  (is (some? (facts/spec-basis "JPN")))
+  (is (string? (:scaffold-inspection-provenance (facts/spec-basis "JPN"))))
+  (is (= :quantitative (:threshold-model (facts/spec-basis "JPN"))))
+  (is (= 75 (:vibration-trigger-value (facts/spec-basis "JPN"))))
+  (is (= :vibration-level-db (:vibration-trigger-unit (facts/spec-basis "JPN")))))
+
+(deftest deu-has-a-spec-basis-with-a-different-physical-unit
+  (is (= :quantitative (:threshold-model (facts/spec-basis "DEU"))))
+  (is (= 5 (:vibration-trigger-value (facts/spec-basis "DEU"))))
+  (is (= :ppv-mm-s (:vibration-trigger-unit (facts/spec-basis "DEU"))))
+  (is (not= (:vibration-trigger-unit (facts/spec-basis "JPN"))
+            (:vibration-trigger-unit (facts/spec-basis "DEU")))
+      "JPN (dB, vibration level) and DEU (mm/s, peak particle velocity) are genuinely different physical quantities -- never fabricate a shared unit"))
+
+(deftest usa-is-honestly-qualitative-not-fabricated
+  (is (= :qualitative (:threshold-model (facts/spec-basis "USA"))))
+  (is (nil? (:vibration-trigger-value (facts/spec-basis "USA")))))
+
+(deftest unknown-jurisdiction-has-no-fabricated-spec-basis
+  (is (nil? (facts/spec-basis "ATL"))))
+
+(deftest coverage-never-reports-a-missing-jurisdiction-as-covered
+  (let [report (facts/coverage ["JPN" "ATL" "USA"])]
+    (is (= 2 (:covered report)))
+    (is (= ["ATL"] (:missing-jurisdictions report)))
+    (is (= ["JPN" "USA"] (:covered-jurisdictions report)))))
+
+;; ----------------------------- vibration-noncompliant? -----------------------------
+
+(deftest jpn-vibration-is-a-real-numeric-recheck-in-decibels
+  (is (true? (facts/vibration-noncompliant? "JPN" {:vibration-level-measured 82 :vibration-mitigation-installed? false})))
+  (is (false? (facts/vibration-noncompliant? "JPN" {:vibration-level-measured 82 :vibration-mitigation-installed? true})))
+  (is (false? (facts/vibration-noncompliant? "JPN" {:vibration-level-measured 50 :vibration-mitigation-installed? false}))))
+
+(deftest deu-vibration-uses-its-own-different-numeric-trigger-and-unit
+  (is (true? (facts/vibration-noncompliant? "DEU" {:vibration-level-measured 8.0 :vibration-mitigation-installed? false})))
+  (is (false? (facts/vibration-noncompliant? "DEU" {:vibration-level-measured 8.0 :vibration-mitigation-installed? true})))
+  (is (false? (facts/vibration-noncompliant? "DEU" {:vibration-level-measured 3.0 :vibration-mitigation-installed? false}))))
+
+(deftest usa-never-gets-a-fabricated-true-false
+  (is (= :qualitative (facts/vibration-noncompliant? "USA" {:vibration-level-measured 100 :vibration-mitigation-installed? false})))
+  (is (= :qualitative (facts/vibration-noncompliant? "USA" {:vibration-level-measured 0 :vibration-mitigation-installed? true}))))
+
+(deftest unknown-jurisdiction-returns-nil-not-a-guess
+  (is (nil? (facts/vibration-noncompliant? "ATL" {:vibration-level-measured 100 :vibration-mitigation-installed? false}))))
+
+(deftest non-numeric-actual-never-fires-a-quantitative-hold
+  (is (false? (facts/vibration-noncompliant? "JPN" {:vibration-level-measured nil :vibration-mitigation-installed? false}))))
+
+;; ----------------------------- catalog citation honesty -----------------------------
+
+(deftest jpn-cites-real-scaffold-and-vibration-law
+  (let [sb (facts/spec-basis "JPN")]
+    (is (re-find #"労働安全衛生規則第567条" (:scaffold-inspection-basis sb)))
+    (is (re-find #"laws\.e-gov\.go\.jp" (:scaffold-inspection-provenance sb)))
+    (is (re-find #"振動規制法" (:vibration-basis sb)))
+    (is (re-find #"laws\.e-gov\.go\.jp" (:vibration-provenance sb)))))
+
+(deftest usa-cites-real-osha-scaffold-standard-and-general-duty-clause
+  (let [sb (facts/spec-basis "USA")]
+    (is (re-find #"1926\.451" (:scaffold-inspection-basis sb)))
+    (is (re-find #"osha\.gov" (:scaffold-inspection-provenance sb)))
+    (is (re-find #"5\(a\)\(1\)" (:vibration-basis sb)))
+    (is (re-find #"osha\.gov" (:vibration-provenance sb)))))
+
+(deftest deu-cites-real-trbs-and-din-standards
+  (let [sb (facts/spec-basis "DEU")]
+    (is (re-find #"TRBS 2121" (:scaffold-inspection-basis sb)))
+    (is (re-find #"baua\.de" (:scaffold-inspection-provenance sb)))
+    (is (re-find #"DIN 4150-3" (:vibration-basis sb)))
+    (is (re-find #"dinmedia\.de" (:vibration-provenance sb)))))
+
+(deftest uncovered-jurisdiction-has-no-fabricated-catalog-entry
+  (is (nil? (facts/spec-basis "ATL"))))

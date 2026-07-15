@@ -1,0 +1,82 @@
+{:itonami.blueprint/id "cloud-itonami-4390"
+ :itonami.blueprint/name "Other Specialized Construction Activities"
+ :itonami.blueprint/isic-rev5 "4390"
+ :itonami.blueprint/domain :construction/other-specialized
+ :itonami.blueprint/license "AGPL-3.0-or-later"
+ :itonami.blueprint/social-impact [:worker-safety :neighboring-structure-protection :trade-craft-quality]
+ :itonami.blueprint/governor :specialized-governor
+ :itonami.blueprint/robotics false
+ :itonami.blueprint/required-technologies [:identity :forms :audit-ledger :notifications]
+ :itonami.blueprint/status :public-oss
+ :itonami.blueprint/maturity :implemented
+ :itonami.blueprint/implemented-slice
+ "`:specialized-governor` is implemented end-to-end in `src/specialized` as
+ a SPECIALIZED-CONSTRUCTION-TRADE-PROJECT OPERATIONS COORDINATION actor --
+ Specialized Trade Advisor (LLM proposal-only) ⊣ Specialized Trade Governor
+ (closed-op-allowlist / site-and-permit-verification / scaffold-inspection
+ / pile-driving-vibration / unresolved-concern hard-gates). Structured
+ after the sibling `cloud-itonami-isic-4329` (other construction
+ installation) / `cloud-itonami-isic-4330` (building completion and
+ finishing) coordination-only reference actors this fleet's `robotics`
+ premise also spans (`cloud-itonami-isic-4211`/`4210`/`4220`/`4311`), and
+ deliberately narrower in authority than all of them:
+ `:itonami.blueprint/robotics` is honestly `false` here -- this actor
+ holds NO trade-equipment-control authority and NO structural-completion
+ sign-off authority (both are HARD, permanent governor blocks, never
+ overridable by human approval -- see `specialized.governor` ns
+ docstring). Every one of its four proposal ops (`:log-site-record` /
+ `:schedule-specialized-operation` / `:flag-safety-concern` /
+ `:order-supplies`) carries `:effect :propose` ONLY -- the governor
+ HARD-holds any proposal that doesn't (`effect-not-propose-violations`).
+
+ Covers ISIC 4390's RESIDUAL specialized-construction-trade scope --
+ scaffolding erection, foundation-piling work, and waterproofing not
+ elsewhere classified (the catch-all for specialized trade work outside
+ 4321 electrical / 4322 plumbing-heat-air-conditioning / 4329 other
+ installation / 4330 completion-and-finishing). This actor names its
+ schedule op `:schedule-specialized-operation` rather than reusing
+ `cloud-itonami-isic-4330`'s `:schedule-finishing-operation` name --
+ 4390's residual scaffolding/piling/waterproofing scope is not
+ building-completion/finishing work, and this fleet's own mislabeling
+ discipline (verify the assigned ISIC id/name before writing anything --
+ see this repo's own scaffold history) argues against borrowing a
+ domain-mismatched op name from a sibling actor's different ISIC class.
+
+ UNLIKE `cloud-itonami-isic-4329`/`cloud-itonami-isic-4330`, and LIKE
+ `cloud-itonami-isic-4311` (demolition) / `cloud-itonami-isic-4210`
+ (roads and railways), `:schedule-specialized-operation` here IS a
+ permanent `high-stakes` member -- it never auto-commits, at any phase,
+ even when the governor is completely clean. Rationale (see
+ `specialized.governor`/`specialized.phase` ns docstrings for the full
+ detail): scaffold collapse and pile-driving-induced ground vibration
+ damaging neighboring structures are genuinely closer in public-safety
+ stakes to demolition/heavy-earthwork scheduling than to
+ `cloud-itonami-isic-4329`'s thermal-insulation/sound-proofing/elevator-
+ installation domain, so this actor keeps a human in the loop for every
+ schedule proposal, not just for `:flag-safety-concern`.
+
+ Per-jurisdiction pre-work scaffold-inspection legal-basis catalog
+ (JPN/USA/DEU, `specialized.facts`) with real official sources
+ (independently verified against laws.e-gov.go.jp / osha.gov / baua.de /
+ dinmedia.de before being written), PLUS a second, independently
+ recomputable pile-driving-vibration numeric check
+ (`specialized.facts/vibration-noncompliant?`) that this fleet's prior
+ `cloud-itonami-isic-4329`/`cloud-itonami-isic-4330` actors do not need --
+ JPN (振動規制法, site-boundary vibration level in dB) and DEU (DIN
+ 4150-3, peak particle velocity in mm/s) each have a REAL numeric trigger
+ in their OWN native unit (this actor does not fabricate a shared unit
+ across jurisdictions), while USA is honestly `:qualitative` (OSHA has no
+ federal numeric construction-vibration standard -- only the general duty
+ clause) -- the SAME honest quantitative/qualitative discipline this
+ fleet established, just with a different jurisdiction landing on
+ `:qualitative` than `cloud-itonami-isic-4329`'s DEU case, because that is
+ what the real regulatory landscape for THIS hazard actually looks like.
+
+ `:flag-safety-concern` ALWAYS escalates to a human, at every phase,
+ unconditionally, and mail+phone safety-concern notification
+ (`specialized.notify`, a portable `.cljc` caller-injected transport seam
+ -- no JVM interop, per this repo's cljs-first mandate) reaches the
+ site's supervisor/safety-officer contact roster only after that human
+ has approved it. See `docs/` -- README `Actuation` section -- for the
+ full governor-check enumeration and the rationale for each hard/soft
+ rule."}

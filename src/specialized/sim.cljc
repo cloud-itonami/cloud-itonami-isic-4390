@@ -1,0 +1,117 @@
+(ns specialized.sim
+  "Demo driver -- `clojure -M:dev:run`. Walks specialized-construction
+  sites through a full coordination episode, exercising every governor
+  check: log a site record (auto-commits) -> propose a scaffolding
+  schedule for a clean, verified site (ESCALATES at phase 3 -- human
+  approves -- `:schedule-specialized-operation` is a PERMANENT high-
+  stakes member here, UNLIKE the sibling `installation`/`finishing`
+  actors, see `specialized.governor`/`specialized.phase` ns docstrings)
+  -> flag a safety concern (ALWAYS escalates, human approves, safety-
+  concern notice actually 'sent' via the mock notifier) -> log the
+  concern's resolution (auto-commits) -> order supplies below the cost
+  threshold (AUTO-COMMITS) -> order supplies above the cost threshold
+  (escalates, approved) -> then FIVE HARD holds that never reach a human
+  at all: an uncovered jurisdiction, a not-independently-verified site,
+  an incomplete scaffold inspection, a pile-driving-vibration violation,
+  an unresolved safety concern -- plus an op outside the closed four-op
+  allowlist -- then a cross-jurisdiction (USA, qualitative -- never
+  fabricates a numeric vibration trigger) and a second cross-jurisdiction
+  (DEU, quantitative DIN 4150-3 PPV, compliant) schedule walkthrough.
+  Finally prints the audit ledger + every coordination-artifact history."
+  (:require [langgraph.graph :as g]
+            [specialized.store :as store]
+            [specialized.notify :as notify]
+            [specialized.operation :as op]))
+
+(def operator {:actor-id "op-1" :actor-role :site-supervisor :phase 3})
+
+(defn- exec! [actor tid request context]
+  (g/run* actor {:request request :context context} {:thread-id tid}))
+
+(defn- approve! [actor tid]
+  (g/run* actor {:approval {:status :approved :by "op-1"}} {:thread-id tid :resume? true}))
+
+(defn -main [& _]
+  (let [db (store/seed-db)
+        notifier (notify/mock-notifier)
+        actor (op/build db {:notifier notifier})]
+    (println "== log-site-record site-1 (progress update, no ground-truth booleans touched) (AUTO-COMMITS) ==")
+    (println (exec! actor "t1" {:op :log-site-record :subject "site-1"
+                                :patch {:id "site-1" :status :ready-to-schedule}} operator))
+
+    (println "== schedule-specialized-operation site-1 (clean, scaffold-erection, high confidence -- ESCALATES at phase 3, human approves) ==")
+    (let [r (exec! actor "t2" {:op :schedule-specialized-operation :subject "site-1"
+                               :trade :scaffold-erection
+                               :window {:proposed-start-date "2026-08-01" :proposed-end-date "2026-08-10"}
+                               :notes "外壁改修塗装のための外部足場設置工事"} operator)]
+      (println r)
+      (println (approve! actor "t2")))
+
+    (println "== flag-safety-concern site-1 (ALWAYS escalates -- human approves; safety-concern notice actually sent via mock notifier) ==")
+    (let [r (exec! actor "t3" {:op :flag-safety-concern :subject "site-1"
+                               :concern-type :scaffold-collapse
+                               :concern-description "足場の壁つなぎ間隔が仕様書と一致しない箇所を確認、追加点検が必要。"} operator)]
+      (println r)
+      (println (approve! actor "t3")))
+    (println "-- sent log --")
+    (println (notify/sent-log notifier))
+
+    (println "== log-site-record site-1: concern resolved after inspection (AUTO-COMMITS) ==")
+    (println (exec! actor "t4" {:op :log-site-record :subject "site-1"
+                                :patch {:id "site-1" :safety-concern-unresolved? false}} operator))
+
+    (println "== order-supplies site-1, cost below threshold (AUTO-COMMITS at phase 3) ==")
+    (println (exec! actor "t5" {:op :order-supplies :subject "site-1"
+                                :items ["scaffold-tube-6m" "coupler-swivel"]
+                                :cost-usd 800 :vendor "Local Scaffold Supply Co."} operator))
+
+    (println "== order-supplies site-1, cost ABOVE threshold (escalates -- human approves) ==")
+    (let [r (exec! actor "t6" {:op :order-supplies :subject "site-1"
+                               :items ["hydraulic-pile-hammer-rental"] :cost-usd 9000 :vendor "Foundation Equipment Rentals"} operator)]
+      (println r)
+      (println (approve! actor "t6")))
+
+    (println "== schedule-specialized-operation site-2 (ATL, no spec-basis -> HARD hold, never reaches a human) ==")
+    (println (exec! actor "t7" {:op :schedule-specialized-operation :subject "site-2" :trade :pile-driving :window {}} operator))
+
+    (println "== schedule-specialized-operation site-3 (site-verified? false -> HARD hold, never reaches a human) ==")
+    (println (exec! actor "t8" {:op :schedule-specialized-operation :subject "site-3" :trade :scaffold-erection :window {}} operator))
+
+    (println "== schedule-specialized-operation site-4 (scaffold-inspection-completed? false -> HARD hold) ==")
+    (println (exec! actor "t9" {:op :schedule-specialized-operation :subject "site-4" :trade :waterproofing :window {}} operator))
+
+    (println "== schedule-specialized-operation site-5 (JPN, vibration-level-measured=82dB >= 75dB trigger, mitigation-installed?=false -> HARD hold) ==")
+    (println (exec! actor "t10" {:op :schedule-specialized-operation :subject "site-5" :trade :pile-driving :window {}} operator))
+
+    (println "== schedule-specialized-operation site-6 (safety-concern-unresolved? true on file -> HARD hold) ==")
+    (println (exec! actor "t11" {:op :schedule-specialized-operation :subject "site-6" :trade :pile-driving :window {}} operator))
+
+    (println "== :direct-equipment-command site-1 (outside the closed 4-op allowlist -> HARD hold, never reaches a human) ==")
+    (println (exec! actor "t12" {:op :direct-equipment-command :subject "site-1"} operator))
+
+    (println "== USA (qualitative -- no fixed numeric federal vibration trigger, never fabricated) -- schedule-specialized-operation site-7 (ESCALATES, clean, human approves) ==")
+    (let [r (exec! actor "t13" {:op :schedule-specialized-operation :subject "site-7" :trade :pile-driving
+                                :window {:proposed-start-date "2026-09-01" :proposed-end-date "2026-09-10"}} operator)]
+      (println r)
+      (println (approve! actor "t13")))
+
+    (println "== DEU (quantitative -- DIN 4150-3, 3.0mm/s well below the 5mm/s row-2 trigger) -- schedule-specialized-operation site-8 (ESCALATES, clean, human approves) ==")
+    (let [r (exec! actor "t14" {:op :schedule-specialized-operation :subject "site-8" :trade :pile-driving
+                                :window {:proposed-start-date "2026-09-15" :proposed-end-date "2026-09-25"}} operator)]
+      (println r)
+      (println (approve! actor "t14")))
+
+    (println "== audit ledger ==")
+    (doseq [f (store/ledger db)] (println f))
+
+    (println "== site-record-log ==")
+    (doseq [r (store/site-record-log-history db)] (println r))
+
+    (println "== schedule-proposal history ==")
+    (doseq [r (store/schedule-proposal-history db)] (println r))
+
+    (println "== safety-concern-flag history ==")
+    (doseq [r (store/safety-concern-flag-history db)] (println (get r "document")))
+
+    (println "== supply-order-proposal history ==")
+    (doseq [r (store/supply-order-proposal-history db)] (println r))))

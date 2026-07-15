@@ -1,0 +1,62 @@
+(ns specialized.phase-test
+  "The phase table as executable tests. The invariant this repo cannot
+  regress on: `:flag-safety-concern` AND `:schedule-specialized-operation`
+  must NEVER be members of any phase's `:auto` set. `:log-site-record`
+  and `:order-supplies` ARE auto-eligible at phase 3 -- see
+  `specialized.phase` ns docstring 'Actuation' section (this repo
+  deliberately differs from `installation.phase`/`finishing.phase`, which
+  DO auto-commit their own schedule op; it mirrors `demolition.phase`/
+  `roadrail.phase`)."
+  (:require [clojure.test :refer [deftest is testing]]
+            [specialized.phase :as phase]))
+
+(deftest flag-safety-concern-never-auto-at-any-phase
+  (doseq [[n {:keys [auto]}] phase/phases]
+    (is (not (contains? auto :flag-safety-concern))
+        (str "phase " n " must not auto-commit :flag-safety-concern"))))
+
+(deftest schedule-specialized-operation-never-auto-at-any-phase
+  (doseq [[n {:keys [auto]}] phase/phases]
+    (is (not (contains? auto :schedule-specialized-operation))
+        (str "phase " n " must not auto-commit :schedule-specialized-operation"))))
+
+(deftest log-site-record-and-order-supplies-are-auto-eligible-at-phase-3
+  (is (contains? (:auto (get phase/phases 3)) :log-site-record))
+  (is (contains? (:auto (get phase/phases 3)) :order-supplies)))
+
+(deftest write-ops-is-exactly-the-closed-four-op-allowlist
+  (is (= #{:log-site-record :schedule-specialized-operation :flag-safety-concern :order-supplies}
+         phase/write-ops)))
+
+(deftest phase-0-is-fully-read-only
+  (is (empty? (:writes (get phase/phases 0)))))
+
+(deftest phase-1-only-allows-log-site-record
+  (is (= #{:log-site-record} (:writes (get phase/phases 1)))))
+
+(deftest phase-3-auto-set-is-exactly-log-site-record-and-order-supplies
+  (is (= #{:log-site-record :order-supplies} (:auto (get phase/phases 3)))))
+
+(deftest gate-hold-always-wins
+  (is (= :hold (:disposition (phase/gate 3 {:op :log-site-record} :hold)))))
+
+(deftest gate-escalates-a-clean-non-auto-write
+  (is (= :escalate (:disposition (phase/gate 3 {:op :flag-safety-concern} :commit)))))
+
+(deftest gate-escalates-schedule-specialized-operation-even-when-clean-at-phase-3
+  (is (= :escalate (:disposition (phase/gate 3 {:op :schedule-specialized-operation} :commit)))))
+
+(deftest gate-auto-commits-log-site-record-when-clean-at-phase-3
+  (is (= :commit (:disposition (phase/gate 3 {:op :log-site-record} :commit)))))
+
+(deftest gate-auto-commits-order-supplies-when-clean-at-phase-3
+  (is (= :commit (:disposition (phase/gate 3 {:op :order-supplies} :commit)))))
+
+(deftest gate-holds-a-write-disabled-in-this-phase
+  (is (= :hold (:disposition (phase/gate 1 {:op :flag-safety-concern} :commit))))
+  (is (= :hold (:disposition (phase/gate 0 {:op :log-site-record} :commit)))))
+
+(deftest gate-holds-schedule-specialized-operation-not-yet-writable-in-earlier-phases
+  (testing "phase 2 does not include :schedule-specialized-operation in :writes at all"
+    (is (= :hold (:disposition (phase/gate 2 {:op :schedule-specialized-operation} :commit)))
+        "phase 2's :writes doesn't include :schedule-specialized-operation at all -> phase-disabled hold")))
