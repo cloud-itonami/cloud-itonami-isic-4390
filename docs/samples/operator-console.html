@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="utf-8">
+<html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>cloud-itonami-isic-4390 · 分類外専門工事 運行調整オペレーターコンソール</title>
+<title>cloud-itonami-isic-4390 &middot; Other Specialized Construction Activities</title>
 <style>/* jp-go-digital-design-system — vendored CSS
  * Source: https://github.com/digital-go-jp/design-system-example-components-html
  * Upstream commit: 3b34f4c3553fa3bee90bfd8b6fe962ac3055107d — MIT License, Copyright (c) 2025 デジタル庁
@@ -2467,144 +2467,127 @@ footer,.footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid va
 img,svg { max-width: 100%; height: auto; }</style>
 </head><body>
 <header class="bar">
-  <h1>その他の専門工事業（ISIC 4390） — 運行調整オペレーターコンソール</h1>
-  <span class="badge">read-only サンプル · governor-gated · 提案のみ（:effect :propose）· 機材操作/完成サインオフの権限なし</span>
+  <h1>Other Specialized Construction Activities (ISIC 4390) — Operator Console</h1>
+  <span class="badge">read-only sample · generated at build time from a real actor run · 19 ledger facts · 8 HARD governor holds</span>
 </header>
-<main class="container">
+<main>
   <section class="card">
-    <h2>現場ディレクトリ（SSoT）</h2>
-    <p class="muted">この実行の <code>specialized.store</code> の全レコード。振動列は <code>specialized.facts/vibration-noncompliant?</code> を法域ごとの実基準に対してその場で再計算したもの（提案の自己申告は使わない）。</p>
+    <h2>This run</h2>
+    <p class="muted">Every number below was counted out of the run this page was built from — 19 actor invocations against <code>specialized.store/seed-db</code>, no timestamps, no sampling.</p>
     <table>
-      <thead><tr><th>現場</th><th>名称</th><th>法域</th><th>工種</th><th>現場検証済</th><th>足場点検完了</th><th>振動実測 / 法定トリガー</th><th>安全性懸念</th><th>この実行の最終処理</th></tr></thead>
+      <thead><tr><th>Measure</th><th>Value</th></tr></thead>
       <tbody>
-        <tr><td><code>site-1</code></td><td>Sakura Heights Apartments -- Exterior Scaffold Erection (Repaint Prep)</td><td><code>JPN</code></td><td><code>scaffold-erection</code></td><td><span class="ok">yes</span></td><td><span class="ok">yes</span></td><td><span class="muted">未実測</span> / trigger <span class="num">75</span> → <span class="ok">適合</span></td><td><span class="ok">無し</span></td><td><span class="critical">HARD hold（人に届かない）</span></td></tr>
-        <tr><td><code>site-2</code></td><td>Atlantis Waterfront Tower -- Sheet-Pile Cofferdam</td><td><code>ATL</code></td><td><code>pile-driving</code></td><td><span class="ok">yes</span></td><td><span class="ok">yes</span></td><td><span class="num">50</span>  / trigger <span class="muted">数値基準なし</span> → <span class="muted">spec-basis無し</span></td><td><span class="ok">無し</span></td><td><span class="critical">HARD hold（人に届かない）</span></td></tr>
-        <tr><td><code>site-3</code></td><td>鈴木ビル改修 -- 外壁改修足場仮設工事</td><td><code>JPN</code></td><td><code>scaffold-erection</code></td><td><span class="critical">no</span></td><td><span class="critical">no</span></td><td><span class="muted">未実測</span> / trigger <span class="num">75</span> → <span class="ok">適合</span></td><td><span class="ok">無し</span></td><td><span class="critical">HARD hold（人に届かない）</span></td></tr>
-        <tr><td><code>site-4</code></td><td>田中団地 -- 防水改修足場設置工事</td><td><code>JPN</code></td><td><code>scaffold-erection</code> <code>waterproofing</code></td><td><span class="ok">yes</span></td><td><span class="critical">no</span></td><td><span class="muted">未実測</span> / trigger <span class="num">75</span> → <span class="ok">適合</span></td><td><span class="ok">無し</span></td><td><span class="ok">人が承認 → commit</span></td></tr>
-        <tr><td><code>site-5</code></td><td>ことぶき小学校 -- 基礎補強杭打ち工事</td><td><code>JPN</code></td><td><code>pile-driving</code></td><td><span class="ok">yes</span></td><td><span class="ok">yes</span></td><td><span class="num">82</span> vibration-level-db / trigger <span class="num">75</span> → <span class="critical">超過・対策未設置</span></td><td><span class="ok">無し</span></td><td><span class="critical">HARD hold（人に届かない）</span></td></tr>
-        <tr><td><code>site-6</code></td><td>山田マンション -- 基礎杭増設工事</td><td><code>JPN</code></td><td><code>pile-driving</code></td><td><span class="ok">yes</span></td><td><span class="ok">yes</span></td><td><span class="muted">未実測</span> / trigger <span class="num">75</span> → <span class="ok">適合</span></td><td><span class="critical">未解決</span></td><td><span class="critical">HARD hold（人に届かない）</span></td></tr>
-        <tr><td><code>site-7</code></td><td>Riverside Plaza -- Pile-Driving Foundation Reinforcement</td><td><code>USA</code></td><td><code>pile-driving</code> <code>scaffold-erection</code></td><td><span class="ok">yes</span></td><td><span class="ok">yes</span></td><td><span class="muted">未実測</span> / trigger <span class="muted">数値基準なし</span> → <span class="warn">qualitative（判定不能・創作しない）</span></td><td><span class="ok">無し</span></td><td><span class="ok">人が承認 → commit</span></td></tr>
-        <tr><td><code>site-8</code></td><td>Alt-Fabrikgelände -- Rammarbeiten Fundamentsanierung</td><td><code>DEU</code></td><td><code>pile-driving</code></td><td><span class="ok">yes</span></td><td><span class="ok">yes</span></td><td><span class="num">3.0</span> ppv-mm-s / trigger <span class="num">5</span> → <span class="ok">適合</span></td><td><span class="ok">無し</span></td><td><span class="ok">人が承認 → commit</span></td></tr>
+        <tr><td>actor graph runs</td><td>19</td></tr>
+        <tr><td>ledger facts persisted</td><td>19</td></tr>
+        <tr><td>committed coordination artifacts</td><td>9</td></tr>
+        <tr><td>HARD governor holds</td><td><span class="critical">8</span></td></tr>
+        <tr><td>distinct HARD rules exercised</td><td>8 &middot; <code>:effect-not-propose</code>, <code>:forbidden-action-class</code>, <code>:no-legal-basis</code>, <code>:scaffold-inspection-incomplete</code>, <code>:site-not-verified</code>, <code>:unknown-op</code>, <code>:unresolved-safety-concern</code>, <code>:vibration-noncompliant</code></td></tr>
+        <tr><td>phase-gate holds (no governor violation)</td><td>1</td></tr>
+        <tr><td>human approvals granted</td><td>6</td></tr>
+        <tr><td>human rejections</td><td>1</td></tr>
+        <tr><td>safety-concern notice sends (mail + phone)</td><td>4</td></tr>
+        <tr><td>sites in the directory</td><td>8</td></tr>
+        <tr><td>jurisdictions with an official spec-basis</td><td>3 / 3 &middot; DEU, JPN, USA</td></tr>
+        <tr><td>step outcomes</td><td><span class="ok">human-approved commit</span> &times;6 &middot; <span class="ok">auto-commit</span> &times;3 &middot; <span class="critical">HARD governor hold</span> &times;8 &middot; <span class="warn">phase-gate hold</span> &times;1 &middot; <span class="warn">human-rejected</span> &times;1</td></tr>
       </tbody>
     </table>
   </section>
   <section class="card">
-    <h2>法域 spec-basis カバレッジ</h2>
-    <p class="muted"><code>specialized.facts/catalog</code> の実データ。cloud-itonami-isic-4390 R0: 3 jurisdictions seeded with an official spec-basis. This is a starting catalog, not a survey of all ~194 jurisdictions -- extend `specialized.facts/catalog`, never fabricate a jurisdiction's requirements. 種まきデータに現れる法域 [&quot;ATL&quot; &quot;DEU&quot; &quot;JPN&quot; &quot;USA&quot;] のうち、spec-basis を持つのは <span class="num">3</span>/<span class="num">4</span>（未収載: <code>ATL</code> — 未収載法域の要件は創作せず、governor が HARD hold する）。</p>
+    <h2>Specialized-construction sites</h2>
+    <p class="muted">The live site directory after the run, read back through <code>specialized.store/all-sites</code>. The vibration verdict column is not a stored field — it is recomputed here by calling <code>specialized.facts/vibration-noncompliant?</code>, the same predicate the governor calls. <code>extra keys</code> lists any field the ACTOR added that the seed schema never declared.</p>
     <table>
-      <thead><tr><th>法域</th><th>名称</th><th>所管</th><th>threshold-model</th><th>振動トリガー</th><th>出典</th></tr></thead>
+      <thead><tr><th>Site</th><th>Name</th><th>Jur.</th><th>Trades</th><th>verified?</th><th>scaffold insp.?</th><th>vibration (recomputed)</th><th>mitigation?</th><th>concern open?</th><th>status</th><th>extra keys</th><th>last fact this run</th></tr></thead>
       <tbody>
-        <tr><td><code>DEU</code></td><td>Germany (EU jurisdiction proxy, see ns docstring)</td><td>Bundesanstalt für Arbeitsschutz und Arbeitsmedizin (BAuA) / Berufsgenossenschaft der Bauwirtschaft (BG BAU); vibration: Deutsches Institut für Normung (DIN), a national standard -- no single EU-wide numeric limit</td><td><span class="ok">quantitative</span></td><td><span class="num">5</span> ppv-mm-s</td><td><a href="https://www.baua.de/DE/Angebote/Regelwerk/TRBS/TRBS-2121-Teil-1">足場点検</a> / <a href="https://www.dinmedia.de/en/standard/din-4150-3/262430160">振動</a></td></tr>
-        <tr><td><code>JPN</code></td><td>Japan</td><td>厚生労働省（労働基準監督署）／環境省（振動規制法所管、指定地域は地方公共団体）</td><td><span class="ok">quantitative</span></td><td><span class="num">75</span> vibration-level-db</td><td><a href="https://laws.e-gov.go.jp/law/347M50002000032">足場点検</a> / <a href="https://laws.e-gov.go.jp/law/351AC0000000064">振動</a></td></tr>
-        <tr><td><code>USA</code></td><td>United States</td><td>Occupational Safety and Health Administration (OSHA), U.S. Department of Labor</td><td><span class="warn">qualitative</span></td><td><span class="muted">なし（創作しない）</span></td><td><a href="https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.451">足場点検</a> / <a href="https://www.osha.gov/laws-regs/oshact/section5-duties">振動</a></td></tr>
+        <tr><td><code>site-1</code></td><td>Sakura Heights Apartments -- Exterior Scaffold Erection (Repaint Prep)</td><td>JPN</td><td>scaffold-erection</td><td><span class="ok">true</span></td><td><span class="ok">true</span></td><td><span class="ok">compliant</span><br><span class="muted">measured nil · trigger 75 vibration-level-db</span></td><td><span class="muted">nil</span></td><td><span class="ok">false</span></td><td><code>:ready-to-schedule</code></td><td><span class="muted">—</span></td><td><span class="critical">HARD hold · forbidden-action-class</span></td></tr>
+        <tr><td><code>site-2</code></td><td>Atlantis Waterfront Tower -- Sheet-Pile Cofferdam</td><td>ATL</td><td>pile-driving</td><td><span class="ok">true</span></td><td><span class="ok">true</span></td><td><span class="warn">no spec-basis</span><br><span class="muted">measured 50 · trigger n/a</span></td><td><span class="ok">true</span></td><td><span class="ok">false</span></td><td><code>:intake</code></td><td><span class="muted">—</span></td><td><span class="critical">HARD hold · no-legal-basis</span></td></tr>
+        <tr><td><code>site-3</code></td><td>鈴木ビル改修 -- 外壁改修足場仮設工事</td><td>JPN</td><td>scaffold-erection</td><td><span class="critical">false</span></td><td><span class="critical">false</span></td><td><span class="ok">compliant</span><br><span class="muted">measured nil · trigger 75 vibration-level-db</span></td><td><span class="muted">nil</span></td><td><span class="ok">false</span></td><td><code>:unverified</code></td><td><span class="warn">:approved-by</span></td><td><span class="critical">HARD hold · site-not-verified</span></td></tr>
+        <tr><td><code>site-4</code></td><td>田中団地 -- 防水改修足場設置工事</td><td>JPN</td><td>scaffold-erection, waterproofing</td><td><span class="ok">true</span></td><td><span class="critical">false</span></td><td><span class="ok">compliant</span><br><span class="muted">measured nil · trigger 75 vibration-level-db</span></td><td><span class="muted">nil</span></td><td><span class="ok">false</span></td><td><code>:inspection-pending</code></td><td><span class="muted">—</span></td><td><span class="critical">HARD hold · scaffold-inspection-incomplete</span></td></tr>
+        <tr><td><code>site-5</code></td><td>ことぶき小学校 -- 基礎補強杭打ち工事</td><td>JPN</td><td>pile-driving</td><td><span class="ok">true</span></td><td><span class="ok">true</span></td><td><span class="critical">noncompliant</span><br><span class="muted">measured 82 · trigger 75 vibration-level-db</span></td><td><span class="warn">false</span></td><td><span class="ok">false</span></td><td><code>:vibration-pending</code></td><td><span class="muted">—</span></td><td><span class="critical">HARD hold · vibration-noncompliant</span></td></tr>
+        <tr><td><code>site-6</code></td><td>山田マンション -- 基礎杭増設工事</td><td>JPN</td><td>pile-driving</td><td><span class="ok">true</span></td><td><span class="ok">true</span></td><td><span class="ok">compliant</span><br><span class="muted">measured nil · trigger 75 vibration-level-db</span></td><td><span class="muted">nil</span></td><td><span class="critical">true</span></td><td><code>:concern-open</code></td><td><span class="muted">—</span></td><td><span class="critical">HARD hold · unresolved-safety-concern</span></td></tr>
+        <tr><td><code>site-7</code></td><td>Riverside Plaza -- Pile-Driving Foundation Reinforcement</td><td>USA</td><td>pile-driving, scaffold-erection</td><td><span class="ok">true</span></td><td><span class="ok">true</span></td><td><span class="muted">qualitative — not arithmetically decidable</span><br><span class="muted">measured nil · trigger no numeric trigger</span></td><td><span class="ok">true</span></td><td><span class="ok">false</span></td><td><code>:ready-to-schedule</code></td><td><span class="muted">—</span></td><td><span class="ok">committed · schedule-specialized-operation</span></td></tr>
+        <tr><td><code>site-8</code></td><td>Alt-Fabrikgelände -- Rammarbeiten Fundamentsanierung</td><td>DEU</td><td>pile-driving</td><td><span class="ok">true</span></td><td><span class="ok">true</span></td><td><span class="ok">compliant</span><br><span class="muted">measured 3.0 · trigger 5 ppv-mm-s</span></td><td><span class="warn">false</span></td><td><span class="ok">false</span></td><td><code>:ready-to-schedule</code></td><td><span class="muted">—</span></td><td><span class="ok">committed · schedule-specialized-operation</span></td></tr>
       </tbody>
     </table>
   </section>
   <section class="card">
-    <h2>Specialized Trade Governor — 8つの HARD チェック（この実行で実際に発火）</h2>
-    <p class="muted">件数・現場・詳細文はすべて <code>specialized.store/ledger</code> の <code>:governor-hold</code> ファクトから読み出したもの。HARD 違反は承認者が上書きできず、人に届く前に止まる。<strong>この表の各行が 0 件になるとビルドが失敗する</strong>（<code>render-html/-main</code> の evidence floor）。</p>
+    <h2>Action gate</h2>
+    <p class="muted">Each cell was produced at build time by calling <code>(specialized.phase/gate phase {:op op} :commit)</code> — this table is the real gate, not a description of it. Permanent <code>high-stakes</code> members (read from <code>specialized.governor/high-stakes</code>): <code>:flag-safety-concern</code>, <code>:schedule-specialized-operation</code>. Ops that no phase ever auto-commits: <code>:flag-safety-concern</code>, <code>:schedule-specialized-operation</code>. Re-checked here across 16 phase&times;op combinations: a governor HOLD survives the phase gate in every one — <span class="ok">verified this build</span>. Soft escalation thresholds read from the real vars: <code>confidence-floor 0.6</code>, <code>supply-order-cost-threshold-usd 5000</code>.</p>
     <table>
-      <thead><tr><th>規則</th><th>発火件数</th><th>対象現場</th><th>オペレーション</th><th>governor が返した実際の詳細</th></tr></thead>
+      <thead><tr><th>Op</th><th>high-stakes?</th><th>phase 0 · read-only</th><th>phase 1 · assisted-logging</th><th>phase 2 · assisted-coordination</th><th>phase 3 · supervised-coordination</th><th>observed this run</th></tr></thead>
       <tbody>
-        <tr><td><code>:unknown-op</code></td><td><span class="ok">1</span></td><td><code>site-1</code></td><td><code>direct-equipment-command</code></td><td>:direct-equipment-command はこのアクターの許可された4オペレーション（:log-site-record/:schedule-specialized-operation/:flag-safety-concern/:order-supplies）のいずれにも該当しない</td></tr>
-        <tr><td><code>:effect-not-propose</code></td><td><span class="ok">1</span></td><td><code>site-1</code></td><td><code>log-site-record</code></td><td>提案の:effectが:propose以外（:actuate）-- このアクターは提案のみで、実際の作動/確定を一切行わない</td></tr>
-        <tr><td><code>:forbidden-action-class</code></td><td><span class="ok">1</span></td><td><code>site-1</code></td><td><code>log-site-record</code></td><td>工事用機材の直接操作コマンド、または構造物完成サインオフの確定を伴う提案は恒久的に禁止（現場監督/建築主事の専権事項）</td></tr>
-        <tr><td><code>:site-not-verified</code></td><td><span class="ok">2</span></td><td><code>site-3</code></td><td><code>schedule-specialized-operation</code> <code>order-supplies</code></td><td>site-3 は現場・許可記録が独立して検証・登録済み（:site-verified?）でない状態での提案</td></tr>
-        <tr><td><code>:no-legal-basis</code></td><td><span class="ok">1</span></td><td><code>site-2</code></td><td><code>schedule-specialized-operation</code></td><td>公式legal-basisの引用が無い提案は専門工事スケジュール提案として扱えない</td></tr>
-        <tr><td><code>:scaffold-inspection-incomplete</code></td><td><span class="ok">2</span></td><td><code>site-3</code> <code>site-4</code></td><td><code>schedule-specialized-operation</code></td><td>site-3 は足場点検が完了記録されていない状態での専門工事スケジュール提案</td></tr>
-        <tr><td><code>:vibration-noncompliant</code></td><td><span class="ok">1</span></td><td><code>site-5</code></td><td><code>schedule-specialized-operation</code></td><td>site-5 の振動実測値（82）が法定振動トリガー以上で、振動対策措置が未設置</td></tr>
-        <tr><td><code>:unresolved-safety-concern</code></td><td><span class="ok">1</span></td><td><code>site-6</code></td><td><code>schedule-specialized-operation</code></td><td>site-6 は未解決の安全性懸念（足場崩壊/杭打ち振動/構造）がある状態での専門工事スケジュール提案</td></tr>
+        <tr><td><code>:flag-safety-concern</code></td><td><span class="warn">always human</span></td><td><span class="critical">disabled</span><br><span class="muted">:phase-disabled</span></td><td><span class="critical">disabled</span><br><span class="muted">:phase-disabled</span></td><td><span class="warn">human approval</span><br><span class="muted">:phase-approval</span></td><td><span class="warn">human approval</span><br><span class="muted">:phase-approval</span></td><td><span class="ok">human-approved commit</span> &times;1</td></tr>
+        <tr><td><code>:log-site-record</code></td><td><span class="muted">no</span></td><td><span class="critical">disabled</span><br><span class="muted">:phase-disabled</span></td><td><span class="warn">human approval</span><br><span class="muted">:phase-approval</span></td><td><span class="warn">human approval</span><br><span class="muted">:phase-approval</span></td><td><span class="ok">auto-commit</span></td><td><span class="ok">human-approved commit</span> &times;1<br><span class="ok">auto-commit</span> &times;2<br><span class="critical">HARD governor hold</span> &times;2</td></tr>
+        <tr><td><code>:order-supplies</code></td><td><span class="muted">no</span></td><td><span class="critical">disabled</span><br><span class="muted">:phase-disabled</span></td><td><span class="critical">disabled</span><br><span class="muted">:phase-disabled</span></td><td><span class="warn">human approval</span><br><span class="muted">:phase-approval</span></td><td><span class="ok">auto-commit</span></td><td><span class="ok">human-approved commit</span> &times;1<br><span class="ok">auto-commit</span> &times;1<br><span class="warn">human-rejected</span> &times;1</td></tr>
+        <tr><td><code>:schedule-specialized-operation</code></td><td><span class="warn">always human</span></td><td><span class="critical">disabled</span><br><span class="muted">:phase-disabled</span></td><td><span class="critical">disabled</span><br><span class="muted">:phase-disabled</span></td><td><span class="critical">disabled</span><br><span class="muted">:phase-disabled</span></td><td><span class="warn">human approval</span><br><span class="muted">:phase-approval</span></td><td><span class="ok">human-approved commit</span> &times;3<br><span class="critical">HARD governor hold</span> &times;5<br><span class="warn">phase-gate hold</span> &times;1</td></tr>
       </tbody>
     </table>
   </section>
   <section class="card">
-    <h2>ロールアウト・フェーズゲート</h2>
-    <p class="muted"><code>specialized.phase/phases</code> のデータそのもの。<code>:schedule-specialized-operation</code> と <code>:flag-safety-concern</code> はどのフェーズの auto 集合にも入らない — ロールアウトの未達ではなく恒久的な構造。</p>
+    <h2>HARD governor holds this run produced</h2>
+    <p class="muted">A HARD hold never reaches a human — <code>:request-approval</code> is not on its path at all, so no approver can override it. Rules and detail text below are lifted verbatim out of the <code>:governor-hold</code> facts this run wrote to the ledger. 1 further hold(s) came from the rollout PHASE gate with no governor violation at all — a structurally different reason to stop, shown separately in the ledger.</p>
     <table>
-      <thead><tr><th>フェーズ</th><th>ラベル</th><th>書込み可</th><th>自動commit可</th></tr></thead>
+      <thead><tr><th>Rule</th><th>Holds</th><th>Sites</th><th>Op</th><th>Detail (verbatim from the run)</th></tr></thead>
       <tbody>
-        <tr><td><span class="num">0</span></td><td><code>read-only</code></td><td><span class="muted">—</span></td><td><span class="muted">—</span></td></tr>
-        <tr><td><span class="num">1</span></td><td><code>assisted-logging</code></td><td><code>log-site-record</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><span class="num">2</span></td><td><code>assisted-coordination</code></td><td><code>flag-safety-concern</code> <code>log-site-record</code> <code>order-supplies</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><span class="num">3</span></td><td><code>supervised-coordination</code></td><td><code>flag-safety-concern</code> <code>log-site-record</code> <code>order-supplies</code> <code>schedule-specialized-operation</code></td><td><code>log-site-record</code> <code>order-supplies</code></td></tr>
+        <tr><td><code>:effect-not-propose</code></td><td><span class="critical">1</span></td><td><code>site-1</code></td><td><code>:log-site-record</code></td><td>提案の:effectが:propose以外（:actuate）-- このアクターは提案のみで、実際の作動/確定を一切行わない</td></tr>
+        <tr><td><code>:forbidden-action-class</code></td><td><span class="critical">1</span></td><td><code>site-1</code></td><td><code>:log-site-record</code></td><td>工事用機材の直接操作コマンド、または構造物完成サインオフの確定を伴う提案は恒久的に禁止（現場監督/建築主事の専権事項）</td></tr>
+        <tr><td><code>:no-legal-basis</code></td><td><span class="critical">1</span></td><td><code>site-2</code></td><td><code>:schedule-specialized-operation</code></td><td>公式legal-basisの引用が無い提案は専門工事スケジュール提案として扱えない</td></tr>
+        <tr><td><code>:scaffold-inspection-incomplete</code></td><td><span class="critical">2</span></td><td><code>site-3</code>, <code>site-4</code></td><td><code>:schedule-specialized-operation</code></td><td>site-3 は足場点検が完了記録されていない状態での専門工事スケジュール提案</td></tr>
+        <tr><td><code>:site-not-verified</code></td><td><span class="critical">1</span></td><td><code>site-3</code></td><td><code>:schedule-specialized-operation</code></td><td>site-3 は現場・許可記録が独立して検証・登録済み（:site-verified?）でない状態での提案</td></tr>
+        <tr><td><code>:unknown-op</code></td><td><span class="critical">1</span></td><td><code>site-1</code></td><td><code>:direct-equipment-command</code></td><td>:direct-equipment-command はこのアクターの許可された4オペレーション（:log-site-record/:schedule-specialized-operation/:flag-safety-concern/:order-supplies）のいずれにも該当しない</td></tr>
+        <tr><td><code>:unresolved-safety-concern</code></td><td><span class="critical">1</span></td><td><code>site-6</code></td><td><code>:schedule-specialized-operation</code></td><td>site-6 は未解決の安全性懸念（足場崩壊/杭打ち振動/構造）がある状態での専門工事スケジュール提案</td></tr>
+        <tr><td><code>:vibration-noncompliant</code></td><td><span class="critical">1</span></td><td><code>site-5</code></td><td><code>:schedule-specialized-operation</code></td><td>site-5 の振動実測値（82）が法定振動トリガー以上で、振動対策措置が未設置</td></tr>
       </tbody>
     </table>
   </section>
   <section class="card">
-    <h2>この実行の処理内訳</h2>
-    <p class="muted">各行は 1 回のグラフ実行（<code>langgraph</code> StateGraph、<code>interrupt-before #{:request-approval}</code>）。「経路」列はシナリオのラベルではなく、グラフ自身の <code>:audit</code> チャネルから導出している。</p>
+    <h2>Jurisdiction spec-basis catalog</h2>
+    <p class="muted">Read straight out of <code>specialized.facts/catalog</code> at build time. cloud-itonami-isic-4390 R0: 3 jurisdictions seeded with an official spec-basis. This is a starting catalog, not a survey of all ~194 jurisdictions -- extend `specialized.facts/catalog`, never fabricate a jurisdiction&#39;s requirements. A jurisdiction absent from this table has NO spec-basis: the advisor may not invent one, and the governor holds any schedule proposal that tries — that is exactly what <code>site-2</code> (ATL) demonstrates above.</p>
     <table>
-      <thead><tr><th>thread</th><th>シナリオ</th><th>op</th><th>現場</th><th>phase</th><th>confidence</th><th>経路</th><th>規則 / 理由</th><th>承認者</th></tr></thead>
+      <thead><tr><th>Jur.</th><th>Name</th><th>Threshold model</th><th>Vibration trigger</th><th>Scaffold-inspection basis</th><th>Sources</th></tr></thead>
       <tbody>
-        <tr><td><code>t01</code></td><td>現場記録を更新（進捗ログ）</td><td><code>log-site-record</code></td><td><code>site-1</code></td><td><span class="num">3</span></td><td><span class="num">0.97</span></td><td><span class="ok">自動commit（フェーズ3）</span></td><td><span class="muted">—</span></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t02</code></td><td>足場設置スケジュール提案（JPN）</td><td><code>schedule-specialized-operation</code></td><td><code>site-1</code></td><td><span class="num">3</span></td><td><span class="num">0.9</span></td><td><span class="ok">人が承認 → commit</span></td><td><span class="muted">—</span></td><td>Tanaka (site supervisor)</td></tr>
-        <tr><td><code>t03</code></td><td>安全性懸念をフラグ（足場崩壊）</td><td><code>flag-safety-concern</code></td><td><code>site-1</code></td><td><span class="num">3</span></td><td><span class="num">0.9</span></td><td><span class="ok">人が承認 → commit</span></td><td><span class="muted">—</span></td><td>Tanaka (site supervisor)</td></tr>
-        <tr><td><code>t04</code></td><td>現場記録を更新（懸念の解消を記録）</td><td><code>log-site-record</code></td><td><code>site-1</code></td><td><span class="num">3</span></td><td><span class="num">0.97</span></td><td><span class="ok">自動commit（フェーズ3）</span></td><td><span class="muted">—</span></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t05</code></td><td>資材発注提案 800 USD（閾値未満）</td><td><code>order-supplies</code></td><td><code>site-1</code></td><td><span class="num">3</span></td><td><span class="num">0.85</span></td><td><span class="ok">自動commit（フェーズ3）</span></td><td><span class="muted">—</span></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t06</code></td><td>機材レンタル発注提案 9000 USD（閾値超過）</td><td><code>order-supplies</code></td><td><code>site-1</code></td><td><span class="num">3</span></td><td><span class="num">0.85</span></td><td><span class="ok">人が承認 → commit</span></td><td><span class="muted">—</span></td><td>Tanaka (site supervisor)</td></tr>
-        <tr><td><code>t07</code></td><td>機材レンタル発注提案 12000 USD（承認者が却下）</td><td><code>order-supplies</code></td><td><code>site-1</code></td><td><span class="num">3</span></td><td><span class="num">0.85</span></td><td><span class="critical">承認者が却下 → hold</span></td><td><code>:approver-rejected</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t08</code></td><td>フェーズ1でスケジュール提案（書込み自体が未解禁）</td><td><code>schedule-specialized-operation</code></td><td><code>site-1</code></td><td><span class="num">1</span></td><td><span class="num">0.9</span></td><td><span class="warn">フェーズ差止（phase-disabled）</span></td><td><code>phase-disabled</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t09</code></td><td>許可4オペレーション外の操作</td><td><code>direct-equipment-command</code></td><td><code>site-1</code></td><td><span class="num">3</span></td><td><span class="num">0.0</span></td><td><span class="critical">HARD hold（人に届かない）</span></td><td><code>unknown-op</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t10</code></td><td>改ざんされた助言者が :effect :actuate を提出</td><td><code>log-site-record</code></td><td><code>site-1</code></td><td><span class="num">3</span></td><td><span class="num">0.99</span></td><td><span class="critical">HARD hold（人に届かない）</span></td><td><code>effect-not-propose</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t11</code></td><td>改ざんされた助言者が機材操作コマンドを同梱</td><td><code>log-site-record</code></td><td><code>site-1</code></td><td><span class="num">3</span></td><td><span class="num">0.99</span></td><td><span class="critical">HARD hold（人に届かない）</span></td><td><code>forbidden-action-class</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t12</code></td><td>未登録法域（ATL）のスケジュール提案</td><td><code>schedule-specialized-operation</code></td><td><code>site-2</code></td><td><span class="num">3</span></td><td><span class="num">0.2</span></td><td><span class="critical">HARD hold（人に届かない）</span></td><td><code>no-legal-basis</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t13</code></td><td>未検証現場のスケジュール提案</td><td><code>schedule-specialized-operation</code></td><td><code>site-3</code></td><td><span class="num">3</span></td><td><span class="num">0.3</span></td><td><span class="critical">HARD hold（人に届かない）</span></td><td><code>site-not-verified</code> <code>scaffold-inspection-incomplete</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t14</code></td><td>未検証現場への資材発注提案（同じ規則・別オペレーション）</td><td><code>order-supplies</code></td><td><code>site-3</code></td><td><span class="num">3</span></td><td><span class="num">0.3</span></td><td><span class="critical">HARD hold（人に届かない）</span></td><td><code>site-not-verified</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t15</code></td><td>足場点検未完了のスケジュール提案</td><td><code>schedule-specialized-operation</code></td><td><code>site-4</code></td><td><span class="num">3</span></td><td><span class="num">0.3</span></td><td><span class="critical">HARD hold（人に届かない）</span></td><td><code>scaffold-inspection-incomplete</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t16</code></td><td>振動規制法トリガー超過のスケジュール提案</td><td><code>schedule-specialized-operation</code></td><td><code>site-5</code></td><td><span class="num">3</span></td><td><span class="num">0.9</span></td><td><span class="critical">HARD hold（人に届かない）</span></td><td><code>vibration-noncompliant</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t17</code></td><td>未解決の安全性懸念があるスケジュール提案</td><td><code>schedule-specialized-operation</code></td><td><code>site-6</code></td><td><span class="num">3</span></td><td><span class="num">0.9</span></td><td><span class="critical">HARD hold（人に届かない）</span></td><td><code>unresolved-safety-concern</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><code>t18</code></td><td>杭打ちスケジュール提案（USA -- 数値基準なし、創作しない）</td><td><code>schedule-specialized-operation</code></td><td><code>site-7</code></td><td><span class="num">3</span></td><td><span class="num">0.9</span></td><td><span class="ok">人が承認 → commit</span></td><td><span class="muted">—</span></td><td>Casey (site supervisor)</td></tr>
-        <tr><td><code>t19</code></td><td>杭打ちスケジュール提案（DEU -- DIN 4150-3、実測3.0mm/s）</td><td><code>schedule-specialized-operation</code></td><td><code>site-8</code></td><td><span class="num">3</span></td><td><span class="num">0.9</span></td><td><span class="ok">人が承認 → commit</span></td><td><span class="muted">—</span></td><td>Müller (site supervisor)</td></tr>
-        <tr><td><code>t20</code></td><td>フェーズ2で現場記録を更新（承認者帰属の実測プローブ）</td><td><code>log-site-record</code></td><td><code>site-4</code></td><td><span class="num">2</span></td><td><span class="num">0.97</span></td><td><span class="ok">人が承認 → commit</span></td><td><span class="muted">—</span></td><td>Ito (site supervisor)</td></tr>
+        <tr><td><code>DEU</code></td><td>Germany (EU jurisdiction proxy, see ns docstring)</td><td><span class="ok">quantitative</span></td><td>5 ppv-mm-s</td><td>TRBS 2121 Teil 1 (Gefährdung von Beschäftigten durch Absturz bei der Verwendung von Gerüsten), issued by BAuA under the Betriebssicherheitsverordnung (BetrSichV) -- requires scaffolds to be erected, inspected and used pe…</td><td><a href="https://www.baua.de/DE/Angebote/Regelwerk/TRBS/TRBS-2121-Teil-1" rel="noreferrer">www.baua.de</a><br><a href="https://www.dinmedia.de/en/standard/din-4150-3/262430160" rel="noreferrer">www.dinmedia.de</a></td></tr>
+        <tr><td><code>JPN</code></td><td>Japan</td><td><span class="ok">quantitative</span></td><td>75 vibration-level-db</td><td>労働安全衛生規則第567条（点検）-- 足場（つり足場を除く）における作業を行うときは、その日の作業を開始する前に、当該作業に係る足場について点検し、及び異常を認めたときは、直ちに補修すること。強風、大雨、大雪等の悪天候若しくは中震以上の地震又は足場の組立て、一部解体若しくは変更の後においても同様の点検義務を負う。</td><td><a href="https://laws.e-gov.go.jp/law/347M50002000032" rel="noreferrer">laws.e-gov.go.jp</a><br><a href="https://laws.e-gov.go.jp/law/351AC0000000064" rel="noreferrer">laws.e-gov.go.jp</a></td></tr>
+        <tr><td><code>USA</code></td><td>United States</td><td><span class="warn">qualitative</span></td><td><span class="muted">none — not fabricated</span></td><td>29 CFR 1926.451 (General requirements -- scaffolds must be designed by a qualified person and constructed/loaded per that design; scaffolds and scaffold components must be inspected for visible defects by a competent per…</td><td><a href="https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.451" rel="noreferrer">www.osha.gov</a><br><a href="https://www.osha.gov/laws-regs/oshact/section5-duties" rel="noreferrer">www.osha.gov</a></td></tr>
       </tbody>
     </table>
   </section>
   <section class="card">
-    <h2>コミットされた調整成果物（append-only レジスタ）</h2>
-    <p class="muted"><code>specialized.registry</code> が構築し、store が追記した実レコード。採番は法域スコープの連番で、国際的な検査桁標準は存在しないため創作していない。</p>
+    <h2>Approval attribution (measured, not assumed)</h2>
+    <p class="muted">Each row was measured by searching the persisted artifact for a key matching <code>/approv/i</code> whose value equals the approver named in this run's own <code>:approval-granted</code> audit fact. Nothing here is hard-coded: if <code>specialized.store/commit-record!</code> is later changed to persist an approver, these cells flip to <span class="ok">retained</span> with no edit to the generator. Where a cell says <span class="warn">NOT retained</span>, the approver is real and auditable in the run's audit channel but is absent from the durable record — that distinction is disclosed here rather than left as a blank column.</p>
     <table>
-      <thead><tr><th>レジスタ</th><th>record_id</th><th>kind</th><th>現場</th><th>法域</th><th>immutable</th></tr></thead>
+      <thead><tr><th>Thread</th><th>Op</th><th>Site</th><th>Approver (audit fact)</th><th>Retained in the artifact?</th><th>Retained in the ledger?</th></tr></thead>
       <tbody>
-        <tr><td><code>:site-record-log</code></td><td><code>JPN-SRL-000000</code></td><td>site-record-log-entry</td><td><code>site-1</code></td><td><code>JPN</code></td><td><span class="ok">yes</span></td></tr>
-        <tr><td><code>:site-record-log</code></td><td><code>JPN-SRL-000001</code></td><td>site-record-log-entry</td><td><code>site-1</code></td><td><code>JPN</code></td><td><span class="ok">yes</span></td></tr>
-        <tr><td><code>:site-record-log</code></td><td><code>JPN-SRL-000002</code></td><td>site-record-log-entry</td><td><code>site-4</code></td><td><code>JPN</code></td><td><span class="ok">yes</span></td></tr>
-        <tr><td><code>:schedule-proposals</code></td><td><code>JPN-SCH-000000</code></td><td>schedule-proposal-draft</td><td><code>site-1</code></td><td><code>JPN</code></td><td><span class="ok">yes</span></td></tr>
-        <tr><td><code>:schedule-proposals</code></td><td><code>USA-SCH-000000</code></td><td>schedule-proposal-draft</td><td><code>site-7</code></td><td><code>USA</code></td><td><span class="ok">yes</span></td></tr>
-        <tr><td><code>:schedule-proposals</code></td><td><code>DEU-SCH-000000</code></td><td>schedule-proposal-draft</td><td><code>site-8</code></td><td><code>DEU</code></td><td><span class="ok">yes</span></td></tr>
-        <tr><td><code>:safety-concern-flags</code></td><td><code>JPN-SCF-000000</code></td><td>safety-concern-flag-draft</td><td><code>site-1</code></td><td><code>JPN</code></td><td><span class="ok">yes</span></td></tr>
-        <tr><td><code>:supply-order-proposals</code></td><td><code>JPN-SUP-000000</code></td><td>supply-order-proposal-draft</td><td><code>site-1</code></td><td><code>JPN</code></td><td><span class="ok">yes</span></td></tr>
-        <tr><td><code>:supply-order-proposals</code></td><td><code>JPN-SUP-000001</code></td><td>supply-order-proposal-draft</td><td><code>site-1</code></td><td><code>JPN</code></td><td><span class="ok">yes</span></td></tr>
+        <tr><td><code>t02-schedule-site-1</code></td><td><code>:schedule-specialized-operation</code></td><td><code>site-1</code></td><td>op-1</td><td><span class="warn">NOT retained in schedule-proposal history</span></td><td><span class="warn">not retained</span></td></tr>
+        <tr><td><code>t03-flag-site-1</code></td><td><code>:flag-safety-concern</code></td><td><code>site-1</code></td><td>op-1</td><td><span class="warn">NOT retained in safety-concern-flag history</span></td><td><span class="warn">not retained</span></td></tr>
+        <tr><td><code>t06-supplies-above</code></td><td><code>:order-supplies</code></td><td><code>site-1</code></td><td>op-1</td><td><span class="warn">NOT retained in supply-order-proposal history</span></td><td><span class="warn">not retained</span></td></tr>
+        <tr><td><code>t09-log-site-3-approved</code></td><td><code>:log-site-record</code></td><td><code>site-3</code></td><td>op-2</td><td><span class="ok">retained in site directory as approved-by</span></td><td><span class="warn">not retained</span></td></tr>
+        <tr><td><code>t18-schedule-site-7-usa</code></td><td><code>:schedule-specialized-operation</code></td><td><code>site-7</code></td><td>op-1</td><td><span class="warn">NOT retained in schedule-proposal history</span></td><td><span class="warn">not retained</span></td></tr>
+        <tr><td><code>t19-schedule-site-8-deu</code></td><td><code>:schedule-specialized-operation</code></td><td><code>site-8</code></td><td>op-1</td><td><span class="warn">NOT retained in schedule-proposal history</span></td><td><span class="warn">not retained</span></td></tr>
       </tbody>
     </table>
   </section>
   <section class="card">
-    <h2>承認者の帰属 — 実測した開示</h2>
-    <p class="muted"><code>specialized.operation</code> の <code>:request-approval</code> ノードは承認者を確定レコードの <code>[:value :approved-by]</code> に載せる。それが後から引けるかは <code>specialized.store/commit-record!</code> がそのオペレーションで <code>:value</code> をどう扱うか次第なので、<strong>この表はレンダリング時に store の実レジスタを走査して求めた測定値</strong>であり、固定文言ではない。store が直れば次のビルドで自動的に表示が変わる。承認者名は各現場の種まき <code>:safety-contacts</code> 名簿から取っており、アクター ID（<code>op-1</code>）とは別の文字列なので取り違えは起きない。</p>
+    <h2>Coordination artifacts committed</h2>
+    <p class="muted">Every record id below was minted by <code>specialized.registry</code> during this run — jurisdiction-scoped sequence numbers, not invented reference formats. None of these is a real-world actuation: this actor holds no trade-equipment-control and no structural-completion sign-off authority, so a committed artifact means only "this coordination record is now on file".</p>
     <table>
-      <thead><tr><th>op</th><th>現場</th><th>承認者</th><th>store が書くレジスタ</th><th>レコード本体に保持されたか</th><th>監査台帳</th></tr></thead>
+      <thead><tr><th>Kind</th><th>Record id</th><th>record kind</th><th>Site</th><th>Jur.</th><th>immutable</th></tr></thead>
       <tbody>
-        <tr><td><code>schedule-specialized-operation</code></td><td><code>site-1</code></td><td>Tanaka (site supervisor)</td><td><code>schedule-proposals</code></td><td><span class="warn">監査記録のみ — 記録本体には保持されない</span></td><td><span class="warn">台帳には出現しない</span></td></tr>
-        <tr><td><code>flag-safety-concern</code></td><td><code>site-1</code></td><td>Tanaka (site supervisor)</td><td><code>sites</code> <code>safety-concern-flags</code></td><td><span class="ok">保持: <code>sites</code></span></td><td><span class="warn">台帳には出現しない</span></td></tr>
-        <tr><td><code>order-supplies</code></td><td><code>site-1</code></td><td>Tanaka (site supervisor)</td><td><code>supply-order-proposals</code></td><td><span class="warn">監査記録のみ — 記録本体には保持されない</span></td><td><span class="warn">台帳には出現しない</span></td></tr>
-        <tr><td><code>schedule-specialized-operation</code></td><td><code>site-7</code></td><td>Casey (site supervisor)</td><td><code>schedule-proposals</code></td><td><span class="warn">監査記録のみ — 記録本体には保持されない</span></td><td><span class="warn">台帳には出現しない</span></td></tr>
-        <tr><td><code>schedule-specialized-operation</code></td><td><code>site-8</code></td><td>Müller (site supervisor)</td><td><code>schedule-proposals</code></td><td><span class="warn">監査記録のみ — 記録本体には保持されない</span></td><td><span class="warn">台帳には出現しない</span></td></tr>
-        <tr><td><code>log-site-record</code></td><td><code>site-4</code></td><td>Ito (site supervisor)</td><td><code>sites</code> <code>site-record-log</code></td><td><span class="ok">保持: <code>sites</code></span></td><td><span class="warn">台帳には出現しない</span></td></tr>
+        <tr><td>Site-record log</td><td><code>JPN-SRL-000000</code></td><td>site-record-log-entry</td><td><code>site-1</code></td><td>JPN</td><td><span class="ok">true</span></td></tr>
+        <tr><td>Site-record log</td><td><code>JPN-SRL-000001</code></td><td>site-record-log-entry</td><td><code>site-1</code></td><td>JPN</td><td><span class="ok">true</span></td></tr>
+        <tr><td>Site-record log</td><td><code>JPN-SRL-000002</code></td><td>site-record-log-entry</td><td><code>site-3</code></td><td>JPN</td><td><span class="ok">true</span></td></tr>
+        <tr><td>Schedule proposals</td><td><code>JPN-SCH-000000</code></td><td>schedule-proposal-draft</td><td><code>site-1</code></td><td>JPN</td><td><span class="ok">true</span></td></tr>
+        <tr><td>Schedule proposals</td><td><code>USA-SCH-000000</code></td><td>schedule-proposal-draft</td><td><code>site-7</code></td><td>USA</td><td><span class="ok">true</span></td></tr>
+        <tr><td>Schedule proposals</td><td><code>DEU-SCH-000000</code></td><td>schedule-proposal-draft</td><td><code>site-8</code></td><td>DEU</td><td><span class="ok">true</span></td></tr>
+        <tr><td>Safety-concern flags</td><td><code>JPN-SCF-000000</code></td><td>safety-concern-flag-draft</td><td><code>site-1</code></td><td>JPN</td><td><span class="ok">true</span></td></tr>
+        <tr><td>Supply-order proposals</td><td><code>JPN-SUP-000000</code></td><td>supply-order-proposal-draft</td><td><code>site-1</code></td><td>JPN</td><td><span class="ok">true</span></td></tr>
+        <tr><td>Supply-order proposals</td><td><code>JPN-SUP-000001</code></td><td>supply-order-proposal-draft</td><td><code>site-1</code></td><td>JPN</td><td><span class="ok">true</span></td></tr>
       </tbody>
     </table>
   </section>
   <section class="card">
-    <h2>安全性懸念通知の実送信ログ</h2>
-    <p class="muted"><code>:flag-safety-concern</code> が人の承認を得た後、<code>specialized.notify</code> が現場の <code>:safety-contacts</code> 名簿全員へメール＋電話の両チャネルで同一通知を配信した実ログ（mock transport）。</p>
-    <table>
-      <thead><tr><th>チャネル</th><th>宛先</th><th>状態</th><th>件名 / メッセージ</th></tr></thead>
-      <tbody>
-        <tr><td><code>mail</code></td><td>tanaka@example.com</td><td><span class="ok">sent</span></td><td>[至急] Sakura Heights Apartments -- Exterior Scaffold Erection (Repaint Prep) 安全性懸念のお知らせ</td></tr>
-        <tr><td><code>phone</code></td><td>+819000000001</td><td><span class="ok">sent</span></td><td>Sakura Heights Apartments -- Exterior Scaffold Erection (Repaint Prep)、安全性懸念が検出されました。至急ご確認ください。</td></tr>
-        <tr><td><code>mail</code></td><td>suzuki@example.com</td><td><span class="ok">sent</span></td><td>[至急] Sakura Heights Apartments -- Exterior Scaffold Erection (Repaint Prep) 安全性懸念のお知らせ</td></tr>
-        <tr><td><code>phone</code></td><td>+819000000002</td><td><span class="ok">sent</span></td><td>Sakura Heights Apartments -- Exterior Scaffold Erection (Repaint Prep)、安全性懸念が検出されました。至急ご確認ください。</td></tr>
-      </tbody>
-    </table>
-    <h3>送信された通知文書（specialized.registry/render-safety-concern-notice）</h3>
+    <h2>Safety-concern notice document (verbatim)</h2>
+    <p class="muted">Rendered by <code>specialized.registry/render-safety-concern-notice</code> during this run and dispatched to the site's seeded contact roster. It cites the jurisdiction's scaffold-inspection legal basis inline, so the notice is self-evidencing about which regulation grounds the concern.</p>
+    <details><summary><code>JPN-SCF-000000</code></summary>
     <pre># Specialized-Construction Site Safety-Concern Notice
 
 Concern number: JPN-SCF-000000
@@ -2618,40 +2601,69 @@ Source: https://laws.e-gov.go.jp/law/347M50002000032
 足場の壁つなぎ間隔が仕様書と一致しない箇所を確認、追加点検が必要。
 
 ## Status
-This is a COORDINATION NOTICE only -- it proposes nothing about trade-equipment dispatch or a structural-completion sign-off. Resolution and any structural-completion decision remain the site supervisor / building official's exclusive authority.
+This is a COORDINATION NOTICE only -- it proposes nothing about trade-equipment dispatch or a structural-completion sign-off. Resolution and any structural-completion decision remain the site supervisor / building official&#39;s exclusive authority.
 </pre>
+    </details>
   </section>
   <section class="card">
-    <h2>監査台帳（この実行）</h2>
-    <p class="muted"><code>specialized.store/append-ledger!</code> が追記した全ファクト。追記のみで、上書きも削除も無い。</p>
+    <h2>Safety-concern notice dispatch</h2>
+    <p class="muted">The mock transport (<code>specialized.notify/mock-notifier</code>) recorded these sends. Recipients come from the flagged site's own seeded <code>:safety-contacts</code> roster — the site supervisor and safety officer, never the trade crew directly, because this actor coordinates and does not dispatch a crew. The notice goes out only AFTER a human approved the flag: <code>:flag-safety-concern</code> is never auto-eligible at any phase. 4 send(s) fanned out of 9 contact(s) seeded across the whole directory.</p>
     <table>
-      <thead><tr><th>ファクト</th><th>op</th><th>現場</th><th>disposition</th><th>basis / 理由</th><th>confidence</th></tr></thead>
+      <thead><tr><th>Channel</th><th>To</th><th>Status</th><th>Content</th></tr></thead>
       <tbody>
-        <tr><td><span class="ok">committed</span></td><td><code>log-site-record</code></td><td><code>site-1</code></td><td><code>commit</code></td><td><code>id</code> <code>status</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><span class="ok">committed</span></td><td><code>schedule-specialized-operation</code></td><td><code>site-1</code></td><td><code>commit</code></td><td><code>労働安全衛生規則第567条（点検）-- 足場（つり足場を除く）における作業を行うときは、その日の作業を開始する前に、当該</code> <code>https://laws.e-gov.go.jp/law/347M50002000032</code> <code>振動規制法（昭和51年法律第64号）-- くい打機（もんけん及び圧入式くい打機を除く。）、くい抜機（油圧式くい抜機を除く</code> <code>https://laws.e-gov.go.jp/law/351AC0000000064</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><span class="ok">committed</span></td><td><code>flag-safety-concern</code></td><td><code>site-1</code></td><td><code>commit</code></td><td><code>労働安全衛生規則第567条（点検）-- 足場（つり足場を除く）における作業を行うときは、その日の作業を開始する前に、当該</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><span class="ok">committed</span></td><td><code>log-site-record</code></td><td><code>site-1</code></td><td><code>commit</code></td><td><code>id</code> <code>safety-concern-unresolved?</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><span class="ok">committed</span></td><td><code>order-supplies</code></td><td><code>site-1</code></td><td><code>commit</code></td><td><code>site-1</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><span class="ok">committed</span></td><td><code>order-supplies</code></td><td><code>site-1</code></td><td><code>commit</code></td><td><code>site-1</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><span class="critical">approval-rejected</span></td><td><code>order-supplies</code></td><td><code>site-1</code></td><td><code>hold</code></td><td><code>approver-rejected</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><span class="critical">governor-hold</span></td><td><code>schedule-specialized-operation</code></td><td><code>site-1</code></td><td><code>hold</code></td><td><code>phase-disabled</code></td><td><span class="num">0.9</span></td></tr>
-        <tr><td><span class="critical">governor-hold</span></td><td><code>direct-equipment-command</code></td><td><code>site-1</code></td><td><code>hold</code></td><td><code>unknown-op</code></td><td><span class="num">0.0</span></td></tr>
-        <tr><td><span class="critical">governor-hold</span></td><td><code>log-site-record</code></td><td><code>site-1</code></td><td><code>hold</code></td><td><code>effect-not-propose</code></td><td><span class="num">0.99</span></td></tr>
-        <tr><td><span class="critical">governor-hold</span></td><td><code>log-site-record</code></td><td><code>site-1</code></td><td><code>hold</code></td><td><code>forbidden-action-class</code></td><td><span class="num">0.99</span></td></tr>
-        <tr><td><span class="critical">governor-hold</span></td><td><code>schedule-specialized-operation</code></td><td><code>site-2</code></td><td><code>hold</code></td><td><code>no-legal-basis</code></td><td><span class="num">0.2</span></td></tr>
-        <tr><td><span class="critical">governor-hold</span></td><td><code>schedule-specialized-operation</code></td><td><code>site-3</code></td><td><code>hold</code></td><td><code>site-not-verified</code> <code>scaffold-inspection-incomplete</code></td><td><span class="num">0.3</span></td></tr>
-        <tr><td><span class="critical">governor-hold</span></td><td><code>order-supplies</code></td><td><code>site-3</code></td><td><code>hold</code></td><td><code>site-not-verified</code></td><td><span class="num">0.3</span></td></tr>
-        <tr><td><span class="critical">governor-hold</span></td><td><code>schedule-specialized-operation</code></td><td><code>site-4</code></td><td><code>hold</code></td><td><code>scaffold-inspection-incomplete</code></td><td><span class="num">0.3</span></td></tr>
-        <tr><td><span class="critical">governor-hold</span></td><td><code>schedule-specialized-operation</code></td><td><code>site-5</code></td><td><code>hold</code></td><td><code>vibration-noncompliant</code></td><td><span class="num">0.9</span></td></tr>
-        <tr><td><span class="critical">governor-hold</span></td><td><code>schedule-specialized-operation</code></td><td><code>site-6</code></td><td><code>hold</code></td><td><code>unresolved-safety-concern</code></td><td><span class="num">0.9</span></td></tr>
-        <tr><td><span class="ok">committed</span></td><td><code>schedule-specialized-operation</code></td><td><code>site-7</code></td><td><code>commit</code></td><td><code>29 CFR 1926.451 (General requirements -- scaffolds must be d</code> <code>https://www.osha.gov/laws-regs/regulations/standardnumber/19</code> <code>No dedicated OSHA numeric construction-vibration standard ex</code> <code>https://www.osha.gov/laws-regs/oshact/section5-duties</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><span class="ok">committed</span></td><td><code>schedule-specialized-operation</code></td><td><code>site-8</code></td><td><code>commit</code></td><td><code>TRBS 2121 Teil 1 (Gefährdung von Beschäftigten durch Absturz</code> <code>https://www.baua.de/DE/Angebote/Regelwerk/TRBS/TRBS-2121-Tei</code> <code>DIN 4150-3:2016-12 (Erschütterungen im Bauwesen -- Teil 3: E</code> <code>https://www.dinmedia.de/en/standard/din-4150-3/262430160</code></td><td><span class="muted">—</span></td></tr>
-        <tr><td><span class="ok">committed</span></td><td><code>log-site-record</code></td><td><code>site-4</code></td><td><code>commit</code></td><td><code>id</code> <code>status</code></td><td><span class="muted">—</span></td></tr>
+        <tr><td><code>:mail</code></td><td>tanaka@example.com</td><td><span class="ok">sent</span></td><td>[至急] Sakura Heights Apartments -- Exterior Scaffold Erection (Repaint Prep) 安全性懸念のお知らせ</td></tr>
+        <tr><td><code>:phone</code></td><td>+819000000001</td><td><span class="ok">sent</span></td><td>Sakura Heights Apartments -- Exterior Scaffold Erection (Repaint Prep)、安全性懸念が検出されました。至急ご確認ください。</td></tr>
+        <tr><td><code>:mail</code></td><td>suzuki@example.com</td><td><span class="ok">sent</span></td><td>[至急] Sakura Heights Apartments -- Exterior Scaffold Erection (Repaint Prep) 安全性懸念のお知らせ</td></tr>
+        <tr><td><code>:phone</code></td><td>+819000000002</td><td><span class="ok">sent</span></td><td>Sakura Heights Apartments -- Exterior Scaffold Erection (Repaint Prep)、安全性懸念が検出されました。至急ご確認ください。</td></tr>
       </tbody>
     </table>
   </section>
-  <footer>
-    <p>build-time 生成 — <code>clojure -M:dev:render-html</code> (<code>specialized.render-html</code>)。この文書のすべての行は実際のアクター実行（<code>specialized.operation</code> → <code>specialized.governor</code> → <code>specialized.store</code>）の出力から導出されており、手書きのドメインデータは含まれない。時刻・乱数を読まないため再実行しても byte 一致する。</p>
-  </footer>
+  <section class="card">
+    <h2>Audit ledger (this run)</h2>
+    <p class="muted">The append-only decision-fact log, in the order the actor wrote it — 19 facts. Holds and commits share one log, which is the point: "why did nothing happen" is as queryable as "what happened".</p>
+    <table>
+      <thead><tr><th>#</th><th>Fact</th><th>Op</th><th>Site</th><th>Disposition</th><th>Basis</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><span class="ok">committed</span></td><td><code>:log-site-record</code></td><td><code>site-1</code></td><td>commit</td><td><code>:id</code>, <code>:status</code></td></tr>
+        <tr><td>2</td><td><span class="ok">committed</span></td><td><code>:schedule-specialized-operation</code></td><td><code>site-1</code></td><td>commit</td><td>労働安全衛生規則第567条（点検）-- 足場（つり足場を除く）における作業を行うときは、…, <a href="https://laws.e-gov.go.jp/law/347M50002000032" rel="noreferrer">laws.e-gov.go.jp</a>, 振動規制法（昭和51年法律第64号）-- くい打機（もんけん及び圧入式くい打機を除く。）…, <a href="https://laws.e-gov.go.jp/law/351AC0000000064" rel="noreferrer">laws.e-gov.go.jp</a></td></tr>
+        <tr><td>3</td><td><span class="ok">committed</span></td><td><code>:flag-safety-concern</code></td><td><code>site-1</code></td><td>commit</td><td>労働安全衛生規則第567条（点検）-- 足場（つり足場を除く）における作業を行うときは、…</td></tr>
+        <tr><td>4</td><td><span class="ok">committed</span></td><td><code>:log-site-record</code></td><td><code>site-1</code></td><td>commit</td><td><code>:id</code>, <code>:safety-concern-unresolved?</code></td></tr>
+        <tr><td>5</td><td><span class="ok">committed</span></td><td><code>:order-supplies</code></td><td><code>site-1</code></td><td>commit</td><td>site-1</td></tr>
+        <tr><td>6</td><td><span class="ok">committed</span></td><td><code>:order-supplies</code></td><td><code>site-1</code></td><td>commit</td><td>site-1</td></tr>
+        <tr><td>7</td><td><span class="warn">approval-rejected</span></td><td><code>:order-supplies</code></td><td><code>site-1</code></td><td>hold</td><td><code>:approver-rejected</code></td></tr>
+        <tr><td>8</td><td><span class="warn">governor-hold</span></td><td><code>:schedule-specialized-operation</code></td><td><code>site-1</code></td><td>hold</td><td><span class="warn">phase gate · phase-disabled</span> <span class="muted">phase 1</span></td></tr>
+        <tr><td>9</td><td><span class="ok">committed</span></td><td><code>:log-site-record</code></td><td><code>site-3</code></td><td>commit</td><td><code>:id</code>, <code>:status</code></td></tr>
+        <tr><td>10</td><td><span class="critical">governor-hold</span></td><td><code>:schedule-specialized-operation</code></td><td><code>site-2</code></td><td>hold</td><td><code>:no-legal-basis</code></td></tr>
+        <tr><td>11</td><td><span class="critical">governor-hold</span></td><td><code>:schedule-specialized-operation</code></td><td><code>site-3</code></td><td>hold</td><td><code>:site-not-verified</code>, <code>:scaffold-inspection-incomplete</code></td></tr>
+        <tr><td>12</td><td><span class="critical">governor-hold</span></td><td><code>:schedule-specialized-operation</code></td><td><code>site-4</code></td><td>hold</td><td><code>:scaffold-inspection-incomplete</code></td></tr>
+        <tr><td>13</td><td><span class="critical">governor-hold</span></td><td><code>:schedule-specialized-operation</code></td><td><code>site-5</code></td><td>hold</td><td><code>:vibration-noncompliant</code></td></tr>
+        <tr><td>14</td><td><span class="critical">governor-hold</span></td><td><code>:schedule-specialized-operation</code></td><td><code>site-6</code></td><td>hold</td><td><code>:unresolved-safety-concern</code></td></tr>
+        <tr><td>15</td><td><span class="critical">governor-hold</span></td><td><code>:direct-equipment-command</code></td><td><code>site-1</code></td><td>hold</td><td><code>:unknown-op</code></td></tr>
+        <tr><td>16</td><td><span class="critical">governor-hold</span></td><td><code>:log-site-record</code></td><td><code>site-1</code></td><td>hold</td><td><code>:effect-not-propose</code></td></tr>
+        <tr><td>17</td><td><span class="critical">governor-hold</span></td><td><code>:log-site-record</code></td><td><code>site-1</code></td><td>hold</td><td><code>:forbidden-action-class</code></td></tr>
+        <tr><td>18</td><td><span class="ok">committed</span></td><td><code>:schedule-specialized-operation</code></td><td><code>site-7</code></td><td>commit</td><td>29 CFR 1926.451 (General requirements -- sca…, <a href="https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.451" rel="noreferrer">www.osha.gov</a>, No dedicated OSHA numeric construction-vibra…, <a href="https://www.osha.gov/laws-regs/oshact/section5-duties" rel="noreferrer">www.osha.gov</a></td></tr>
+        <tr><td>19</td><td><span class="ok">committed</span></td><td><code>:schedule-specialized-operation</code></td><td><code>site-8</code></td><td>commit</td><td>TRBS 2121 Teil 1 (Gefährdung von Beschäftigt…, <a href="https://www.baua.de/DE/Angebote/Regelwerk/TRBS/TRBS-2121-Teil-1" rel="noreferrer">www.baua.de</a>, DIN 4150-3:2016-12 (Erschütterungen im Bauwe…, <a href="https://www.dinmedia.de/en/standard/din-4150-3/262430160" rel="noreferrer">www.dinmedia.de</a></td></tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="card">
+    <h2>How this page was made</h2>
+    <table>
+      <thead><tr><th>Fact</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>generator</td><td><code>specialized.render-html</code></td></tr>
+        <tr><td>command</td><td><code>clojure -M:dev:render-html</code></td></tr>
+        <tr><td>actor stack</td><td><code>specialized.operation</code> &rarr; <code>specialized.governor</code> &rarr; <code>specialized.phase</code> &rarr; <code>specialized.store</code> (driven with <code>langgraph.graph/run*</code>)</td></tr>
+        <tr><td>seed</td><td><code>specialized.store/seed-db</code></td></tr>
+        <tr><td>advisor</td><td><code>specialized.advisor/mock-advisor</code> (deterministic) plus one deliberately compromised advisor injected through the documented <code>:advisor</code> seam to prove governor checks 2 and 3 fire</td></tr>
+        <tr><td>determinism</td><td>no timestamp, no rand, no wall-clock value reaches this page; two runs at the same commit are byte-identical</td></tr>
+        <tr><td>ISIC rev.5</td><td><code>4390</code></td></tr>
+        <tr><td>governor</td><td><code>:specialized-governor</code></td></tr>
+        <tr><td>robotics authority</td><td><span class="ok">false — holds no trade-equipment-control authority</span></td></tr>
+        <tr><td>social impact</td><td><code>:worker-safety</code>, <code>:neighboring-structure-protection</code>, <code>:trade-craft-quality</code></td></tr>
+        <tr><td>styling</td><td><code>jp-go-dds.skin/dds+skin</code> (デジタル庁デザインシステム)</td></tr>
+      </tbody>
+    </table>
+  </section>
 </main>
 </body></html>

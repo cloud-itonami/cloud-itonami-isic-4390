@@ -21,7 +21,15 @@
  :deps {io.github.com-junkawasaki/langgraph-clj
         {:local/root "../../kotoba-lang/langgraph"}
         io.github.kotoba-lang/langchain-store
-        {:local/root "../../kotoba-lang/langchain-store"}}
+        {:local/root "../../kotoba-lang/langchain-store"}
+        ;; デジタル庁デザインシステム (DADS) -- the workspace's BASE design
+        ;; system (superproject CLAUDE.md, 2026-08-05). Consumed only by
+        ;; `specialized.render-html` at BUILD time to style
+        ;; docs/samples/operator-console.html; the actor itself never
+        ;; touches it.
+        io.github.kotoba-lang/jp-go-digital-design-system
+        {:git/url "https://github.com/kotoba-lang/jp-go-digital-design-system"
+         :git/sha "83db99546eabc53613ae826ea41d1533a3c574af"}}
  :aliases
  {;; offline workspace dev -- pin transitive langchain-clj to local checkout
   :dev {:override-deps
@@ -30,21 +38,11 @@
   ;; clojure -M:dev:run  -> drive the demo through one OperationActor
   :run {:main-opts ["-m" "specialized.sim"]}
   ;; clojure -M:dev:render-html [out-file] -> regenerate
-  ;; docs/samples/operator-console.html by ACTUALLY RUNNING the actor
-  ;; (specialized.operation -> .governor -> .store) and rendering its real
-  ;; output. `-main` throws unless the run produced a real :governor-hold
-  ;; for every rule in `render-html/hard-rule-order`, so the page can never
-  ;; be regenerated into a version that has quietly stopped demonstrating
-  ;; enforcement. jp-go-dds (デジタル庁デザインシステム) is a BUILD-TIME-ONLY
-  ;; dep -- it supplies the page's CSS and is deliberately not in :deps, so
-  ;; the actor library itself stays UI-free. Pinned by :git/sha (not
-  ;; :local/root) so a standalone fork outside this monorepo can still
-  ;; regenerate the page.
-  :render-html {:extra-deps
-                {io.github.kotoba-lang/jp-go-digital-design-system
-                 {:git/url "https://github.com/kotoba-lang/jp-go-digital-design-system"
-                  :git/sha "83db99546eabc53613ae826ea41d1533a3c574af"}}
-                :main-opts ["-m" "specialized.render-html"]}
+  ;; docs/samples/operator-console.html by driving the REAL actor stack
+  ;; (operation -> governor -> phase -> store) through a scenario and
+  ;; rendering the result. Refuses to write a page whose run produced no
+  ;; HARD governor hold -- see `specialized.render-html/check-invariants!`.
+  :render-html {:main-opts ["-m" "specialized.render-html"]}
   :test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner
                       {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
