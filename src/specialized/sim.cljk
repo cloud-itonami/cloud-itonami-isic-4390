@@ -1,5 +1,5 @@
 (ns specialized.sim
-  "Demo driver -- `clojure -M:dev:run`. Walks specialized-construction
+  "Demo driver -- `kbb -M:dev:run`. Walks specialized-construction
   sites through a full coordination episode, exercising every governor
   check: log a site record (auto-commits) -> propose a scaffolding
   schedule for a clean, verified site (ESCALATES at phase 3 -- human
