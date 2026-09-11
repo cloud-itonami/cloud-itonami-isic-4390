@@ -116,7 +116,7 @@ ISIC class, even when structurally mirroring that sibling closely.
 | `:flag-safety-concern` | surface a scaffold-collapse, pile-driving-vibration, or structural concern | Drafts a safety-concern flag; ALWAYS escalates to a human, unconditionally. Once approved, `specialized.notify` sends the notice (mail + phone) to the site's supervisor/safety-officer contact roster. |
 | `:order-supplies` | materials/equipment procurement proposal | Drafts a supply-order proposal. Escalates above a cost threshold or below the confidence floor; may auto-commit at phase 3 otherwise. |
 
-**Legal basis is data, not code** -- `src/specialized/facts.cljc`'s
+**Legal basis is data, not code** -- `src/specialized/facts.cljk`'s
 `catalog` is the per-jurisdiction EDN source-of-truth the governor checks
 every `:schedule-specialized-operation` proposal against (JPN/USA/DEU
 seeded; DEU stands in for the EU, the same convention
