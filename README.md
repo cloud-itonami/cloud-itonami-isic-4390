@@ -178,9 +178,9 @@ only the routing to a human vs. auto-commit changes, and for
 ALWAYS to a human, never auto.
 
 ```bash
-clojure -M:dev:run    # demo: full coordination episode + every HARD hold
-clojure -M:dev:test   # test suite
-clojure -M:lint       # clj-kondo, errors fail
+kbb -M:dev:run    # demo: full coordination episode + every HARD hold
+kbb -M:dev:test   # test suite
+kbb -M:lint       # clj-kondo, errors fail
 ```
 
 ## License

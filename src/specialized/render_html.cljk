@@ -30,7 +30,7 @@
   silently lost the governor would misrepresent this actor, so the
   failure mode is a thrown exception, not a quieter page.
 
-  Usage: `clojure -M:dev:render-html [out-file]`
+  Usage: `kbb -M:dev:render-html [out-file]`
   (default `docs/samples/operator-console.html`)."
   (:require [clojure.edn :as edn]
             [clojure.java.io :as io]
@@ -738,7 +738,7 @@
    nil
    (table ["Fact" "Value"]
           [(row "generator" (code "specialized.render-html"))
-           (row "command" (code "clojure -M:dev:render-html"))
+           (row "command" (code "kbb -M:dev:render-html"))
            (row "actor stack"
                 (str (code "specialized.operation") " &rarr; " (code "specialized.governor")
                      " &rarr; " (code "specialized.phase") " &rarr; " (code "specialized.store")

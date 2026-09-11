@@ -2652,7 +2652,7 @@ This is a COORDINATION NOTICE only -- it proposes nothing about trade-equipment 
       <thead><tr><th>Fact</th><th>Value</th></tr></thead>
       <tbody>
         <tr><td>generator</td><td><code>specialized.render-html</code></td></tr>
-        <tr><td>command</td><td><code>clojure -M:dev:render-html</code></td></tr>
+        <tr><td>command</td><td><code>kbb -M:dev:render-html</code></td></tr>
         <tr><td>actor stack</td><td><code>specialized.operation</code> &rarr; <code>specialized.governor</code> &rarr; <code>specialized.phase</code> &rarr; <code>specialized.store</code> (driven with <code>langgraph.graph/run*</code>)</td></tr>
         <tr><td>seed</td><td><code>specialized.store/seed-db</code></td></tr>
         <tr><td>advisor</td><td><code>specialized.advisor/mock-advisor</code> (deterministic) plus one deliberately compromised advisor injected through the documented <code>:advisor</code> seam to prove governor checks 2 and 3 fire</td></tr>
