@@ -5,7 +5,7 @@
   a configuration change, not a rewrite -- see `installation.store-
   contract-test`/`finishing.store-contract-test` for the same pattern on
   the sibling actors."
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [specialized.store :as store]))
 
 (defn- backends []
