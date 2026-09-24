@@ -1,5 +1,5 @@
 (ns specialized.notify-test
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.test :refer [deftest is]]
             [specialized.notify :as notify]))
 
 (deftest mock-notifier-records-mail-and-phone-sends
