@@ -24,7 +24,7 @@
   ## Portability -- fully `.cljc`, NO platform interop in this namespace
 
   Per this repo's mandate (cljs-first / no JVM interop -- see
-  superproject CLAUDE.md `.cljc`/`.kotoba` runtime priority note), this
+  superproject AGENTS.md `.cljc`/`.kotoba` runtime priority note), this
   namespace does NOT embed a `java.net.http` (or any other platform)
   HTTP client. The real transport (Resend/Twilio/etc.) is a plain-function
   INJECTION seam (`fn-notifier`) supplied by the HOST application -- this

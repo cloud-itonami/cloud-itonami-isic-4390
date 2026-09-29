@@ -14,7 +14,7 @@
  ;; trade-equipment/crew actions, only proposes, schedules, flags and logs,
  ;; all governor- and human-gated (see README). Per this repo's mandate
  ;; (cljs-first / fully portable `.cljc`, no JVM interop -- see
- ;; superproject CLAUDE.md `.cljc`/`.kotoba` runtime priority note),
+ ;; superproject AGENTS.md `.cljc`/`.kotoba` runtime priority note),
  ;; `specialized.notify`'s real transport is a plain-function INJECTION
  ;; seam (`fn-notifier`) -- this repo does NOT embed a
  ;; `java.net.http`/platform HTTP client itself.
@@ -41,7 +41,7 @@
         io.github.kotoba-lang/langchain-store
         {:local/root "../../kotoba-lang/langchain-store"}
         ;; デジタル庁デザインシステム (DADS) -- the workspace's BASE design
-        ;; system (superproject CLAUDE.md, 2026-08-05). Consumed only by
+        ;; system (superproject AGENTS.md, 2026-08-05). Consumed only by
         ;; `specialized.render-html` at BUILD time to style
         ;; docs/samples/operator-console.html; the actor itself never
         ;; touches it.
